@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Printer, RefreshCw } from '@lucide/svelte';
+  import Printer from '@lucide/svelte/icons/printer';
+  import RefreshCw from '@lucide/svelte/icons/refresh-cw';
 
   interface Props {
     validationMessage?: string;
@@ -40,4 +41,3 @@
     </button>
   </div>
 </div>
-

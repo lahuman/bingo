@@ -12,7 +12,7 @@
 - 페이지당 1개 또는 2개 빙고판 배치
 - 제목과 이름칸 출력
 - 브라우저 `localStorage`를 통한 최근 설정/항목 자동 저장
-- Docker Compose 기반 정적 파일 서빙
+- Docker Compose 기반 SvelteKit Node 서버 실행
 
 ## 개발
 

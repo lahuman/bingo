@@ -4,7 +4,7 @@
 
 ## 현재 상태
 
-수업용 빙고 프린트 웹 앱은 SvelteKit/Vite 기반 정적 앱으로 구현되어 있다. 앱은 서버 API 없이 브라우저에서 동작하며, 교사가 입력한 텍스트 항목과 출력 설정을 `localStorage`에 저장한다.
+수업용 빙고 프린트 웹 앱은 SvelteKit/Vite 기반 앱으로 구현되어 있다. 앱 기능은 서버 API 없이 브라우저에서 동작하며, 교사가 입력한 텍스트 항목과 출력 설정을 `localStorage`에 저장한다. Docker 배포에서는 Nginx 정적 서빙 대신 SvelteKit Node 서버를 실행한다.
 
 최종 출력 사양은 사용자 인쇄 테스트 피드백을 반영해 A4 가로 전용으로 단순화했다. 페이지당 배치는 1개 또는 2개만 지원한다. 세로 출력과 페이지당 4개 배치는 제거했다.
 
@@ -24,7 +24,7 @@
 - 제목과 이름칸이 포함된 학생용 빙고판
 - 브라우저 인쇄창 호출
 - 최근 입력 항목과 설정 자동 저장
-- Docker Compose 기반 정적 배포 구성
+- Docker Compose 기반 SvelteKit Node 서버 실행 구성
 
 ## 제외된 기능
 
@@ -48,7 +48,7 @@
 - `src/lib/components/BingoBoard.svelte`: 단일 빙고판 렌더링
 - `src/lib/components/PrintPreview.svelte`: 페이지 단위 출력 미리보기
 - `src/app.css`: 화면 레이아웃과 A4 가로 인쇄 스타일
-- `Dockerfile`, `docker-compose.yml`, `nginx.conf`: 정적 빌드 배포
+- `Dockerfile`, `docker-compose.yml`: SvelteKit Node 서버 배포
 
 ## 검증 현황
 
@@ -58,7 +58,7 @@
 - `npm run test`: 통과, 3개 테스트 파일 / 22개 테스트
 - `npm run build`: 통과, `build/` 정적 산출물 생성
 
-Docker Compose 빌드는 구성 파일을 추가했지만, 이 작업 환경에서는 Docker/Colima 데몬 소켓이 없어 실행 검증이 막혔다. Docker 또는 Colima를 켠 환경에서는 다음 명령으로 확인한다.
+Docker Compose는 SvelteKit 빌드 산출물을 `node build`로 실행한다. 이 작업 환경에서는 Docker/Colima 데몬 소켓이 없어 실행 검증이 막혔다. Docker 또는 Colima를 켠 환경에서는 다음 명령으로 확인한다.
 
 ```bash
 docker compose up --build

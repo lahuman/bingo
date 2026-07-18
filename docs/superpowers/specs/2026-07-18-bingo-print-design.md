@@ -33,7 +33,7 @@
 - 제목과 이름칸 출력
 - 브라우저 인쇄 지원
 - `localStorage` 기반 브라우저 저장
-- Dockerfile과 `docker-compose.yml` 기반 빌드 및 정적 서빙
+- Dockerfile과 `docker-compose.yml` 기반 빌드 및 SvelteKit Node 서버 실행
 
 제외:
 
@@ -45,7 +45,7 @@
 
 ## 기술 방향
 
-앱은 SvelteKit과 Vite로 작성하고 정적 빌드 산출물을 만든다. `@sveltejs/adapter-static`을 사용해 서버 API 없이 동작하는 정적 사이트로 빌드한다. Docker 배포는 멀티 스테이지 Dockerfile을 사용한다. 첫 단계에서 앱을 빌드하고, 두 번째 단계에서 Nginx 같은 경량 웹서버가 정적 파일을 서빙한다. `docker-compose.yml`은 로컬 또는 단일 서버 배포에서 컨테이너를 쉽게 실행할 수 있게 한다.
+앱은 SvelteKit과 Vite로 작성한다. 앱 기능은 서버 API 없이 브라우저에서 동작하지만, Docker 배포는 `@sveltejs/adapter-node`로 생성한 SvelteKit Node 서버를 실행한다. Docker 배포는 멀티 스테이지 Dockerfile을 사용한다. 첫 단계에서 앱을 빌드하고, 두 번째 단계에서 `node build`로 SvelteKit 서버를 실행한다. `docker-compose.yml`은 로컬 또는 단일 서버 배포에서 컨테이너를 쉽게 실행할 수 있게 한다.
 
 React는 사용하지 않는다. 사용자가 최종 지정한 프레임워크는 SvelteKit이며, SvelteKit은 Vite 기반으로 개발 서버와 빌드 파이프라인을 제공한다.
 

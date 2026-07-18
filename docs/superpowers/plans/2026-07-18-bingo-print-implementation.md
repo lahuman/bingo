@@ -4,6 +4,8 @@
 
 > **Status note:** This file records the original implementation plan. After implementation, print testing narrowed the final product scope to A4 landscape only with 1 or 2 boards per page. The current final state is summarized in [`docs/implementation-summary.md`](../../implementation-summary.md).
 
+> **Deployment note:** The original plan used Nginx static serving. The project now runs the built SvelteKit app with `@sveltejs/adapter-node` and `node build` in Docker.
+
 **Goal:** Build a SvelteKit/Vite static web app that lets teachers generate and browser-print multiple text-only classroom bingo boards.
 
 **Architecture:** The app runs entirely in the browser with no server APIs. Pure TypeScript utilities generate and validate bingo boards, Svelte components render the editor and print preview, `localStorage` persists teacher settings, and `@sveltejs/adapter-static` emits static files that Docker serves through Nginx.
