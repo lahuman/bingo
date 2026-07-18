@@ -25,4 +25,9 @@ describe('deployment configuration', () => {
       "from '@lucide/svelte/icons/refresh-cw'"
     );
   });
+
+  it('lets the host port be configured from .env with a safe default', () => {
+    expect(read('docker-compose.yml')).toContain('"${BINGO_PORT:-8080}:3000"');
+    expect(read('.env.example')).toContain('BINGO_PORT=8080');
+  });
 });

@@ -25,6 +25,7 @@
 - 브라우저 인쇄창 호출
 - 최근 입력 항목과 설정 자동 저장
 - Docker Compose 기반 SvelteKit Node 서버 실행 구성
+- `.env`의 `BINGO_PORT` 값으로 Docker 호스트 포트 조정
 
 ## 제외된 기능
 
@@ -48,6 +49,7 @@
 - `src/lib/components/BingoBoard.svelte`: 단일 빙고판 렌더링
 - `src/lib/components/PrintPreview.svelte`: 페이지 단위 출력 미리보기
 - `src/app.css`: 화면 레이아웃과 A4 가로 인쇄 스타일
+- `.env.example`: Docker Compose 호스트 포트 예시 설정
 - `Dockerfile`, `docker-compose.yml`: SvelteKit Node 서버 배포
 
 ## 검증 현황
@@ -55,12 +57,13 @@
 마지막 검증 결과:
 
 - `npm run check`: 통과
-- `npm run test`: 통과, 3개 테스트 파일 / 22개 테스트
+- `npm run test`: 통과, 4개 테스트 파일 / 25개 테스트
 - `npm run build`: 통과, `build/` 정적 산출물 생성
 
 Docker Compose는 SvelteKit 빌드 산출물을 `node build`로 실행한다. 이 작업 환경에서는 Docker/Colima 데몬 소켓이 없어 실행 검증이 막혔다. Docker 또는 Colima를 켠 환경에서는 다음 명령으로 확인한다.
 
 ```bash
+cp .env.example .env
 docker compose up --build
 ```
 

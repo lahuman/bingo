@@ -31,11 +31,18 @@ npm run build
 
 ## Docker Compose 실행
 
+포트는 `.env`의 `BINGO_PORT` 값으로 조정합니다. 기본값은 `8080`입니다.
+
+```bash
+cp .env.example .env
+```
+
 ```bash
 docker compose up --build
 ```
 
-접속: `http://localhost:8080`
+접속 주소는 `http://localhost:${BINGO_PORT}`입니다.
+기본 설정에서는 `http://localhost:8080`입니다.
 
 ## 출력
 
