@@ -7,6 +7,16 @@
   }
 
   let { board, title = '' }: Props = $props();
+
+  function cellTextClass(text: string): string {
+    const length = [...text.trim()].length;
+
+    if (length >= 36) return 'cell-text cell-text--tiny';
+    if (length >= 24) return 'cell-text cell-text--smaller';
+    if (length >= 14) return 'cell-text cell-text--small';
+
+    return 'cell-text';
+  }
 </script>
 
 <article class="bingo-board" style={`--board-size: ${board.size}`} aria-label={`${title || '수업 빙고'} ${board.id}`}>
@@ -21,9 +31,8 @@
   <div class="board-grid">
     {#each board.cells as cell}
       <div class="board-cell">
-        <span>{cell}</span>
+        <span class={cellTextClass(cell)}>{cell}</span>
       </div>
     {/each}
   </div>
 </article>
-

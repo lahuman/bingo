@@ -22,6 +22,7 @@
 - 페이지당 1개 또는 2개 출력
 - A4 가로 전용 인쇄 스타일
 - 제목과 이름칸이 포함된 학생용 빙고판
+- 긴 항목은 글자 크기를 단계적으로 줄이고 빙고 칸 크기는 고정
 - 브라우저 인쇄창 호출
 - 최근 입력 항목과 설정 자동 저장
 - Docker Compose 기반 SvelteKit Node 서버 실행 구성
@@ -57,8 +58,8 @@
 마지막 검증 결과:
 
 - `npm run check`: 통과
-- `npm run test`: 통과, 4개 테스트 파일 / 25개 테스트
-- `npm run build`: 통과, `build/` 정적 산출물 생성
+- `npm run test`: 통과, 4개 테스트 파일 / 27개 테스트
+- `npm run build`: 통과, `build/` SvelteKit Node 빌드 산출물 생성
 
 Docker Compose는 SvelteKit 빌드 산출물을 `node build`로 실행한다. 이 작업 환경에서는 Docker/Colima 데몬 소켓이 없어 실행 검증이 막혔다. Docker 또는 Colima를 켠 환경에서는 다음 명령으로 확인한다.
 
@@ -78,3 +79,7 @@ docker compose up --build
 - `8d38ac0`: 반응형/인쇄 스타일 추가
 - `1c4ce98`: Docker Compose 배포 구성 추가
 - `e6e4165`: 인쇄 레이아웃을 A4 가로 전용으로 단순화
+- `b29f53b`: 작업 문서화
+- `aa396a9`: Nginx 없이 SvelteKit Node 서버로 Docker 실행 방식 변경
+- `2905149`: `.env`로 Docker Compose 호스트 포트 설정 추가
+- 최신 변경: 긴 문구 셀 글자 크기 조정과 빙고 칸 고정

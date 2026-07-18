@@ -30,4 +30,13 @@ describe('deployment configuration', () => {
     expect(read('docker-compose.yml')).toContain('"${BINGO_PORT:-8080}:3000"');
     expect(read('.env.example')).toContain('BINGO_PORT=8080');
   });
+
+  it('keeps bingo cells fixed while long text scales down inside each box', () => {
+    const css = read('src/app.css');
+
+    expect(css).toContain('grid-template-columns: repeat(var(--board-size), minmax(0, 1fr));');
+    expect(css).toContain('grid-template-rows: repeat(var(--board-size), minmax(0, 1fr));');
+    expect(css).toContain('overflow: hidden;');
+    expect(css).toContain('.cell-text--tiny');
+  });
 });

@@ -32,6 +32,26 @@ describe('BingoBoard', () => {
     expect(screen.getByText('칸 16')).toBeTruthy();
     expect(container.querySelectorAll('.board-cell')).toHaveLength(16);
   });
+
+  it('marks long cell text for smaller font sizing without changing the board shape', () => {
+    const longText = '아주 긴 문장으로 된 빙고 항목입니다 한 칸 안에서 작게 보여야 합니다';
+    const mixedBoard = {
+      ...board,
+      cells: [longText, ...Array.from({ length: 15 }, (_, index) => `짧은 ${index + 1}`)]
+    };
+
+    const { container } = render(BingoBoard, {
+      props: {
+        board: mixedBoard,
+        title: '긴 글자 테스트'
+      }
+    });
+
+    const spans = container.querySelectorAll('.board-cell span');
+    expect(spans[0].classList.contains('cell-text--tiny')).toBe(true);
+    expect(spans[1].classList.contains('cell-text')).toBe(true);
+    expect(spans[1].className).not.toContain('cell-text--');
+  });
 });
 
 describe('PrintPreview', () => {
