@@ -46,14 +46,13 @@ describe('PrintPreview', () => {
       props: {
         boards,
         boardsPerPage: 2,
-        pageOrientation: 'landscape',
         title: '수학 빙고'
       }
     });
 
     expect(container.querySelectorAll('.print-page')).toHaveLength(3);
     expect(container.querySelector('.print-preview')?.classList.contains('layout-2')).toBe(true);
-    expect(container.querySelector('.print-preview')?.classList.contains('orientation-landscape')).toBe(true);
+    expect(container.querySelector('.print-preview')?.className).not.toContain('orientation-');
   });
 });
 
@@ -137,5 +136,23 @@ describe('SettingsPanel', () => {
       ...DEFAULT_SETTINGS,
       boardSize: 5
     });
+  });
+
+  it('only exposes landscape print layouts with one or two boards per page', () => {
+    render(SettingsPanel, {
+      props: {
+        settings: DEFAULT_SETTINGS,
+        storageMessage: '',
+        onSettingsChange: vi.fn()
+      }
+    });
+
+    expect(screen.getByText('페이지당 배치')).toBeTruthy();
+    expect(screen.getByLabelText('1개')).toBeTruthy();
+    expect(screen.getByLabelText('2개')).toBeTruthy();
+    expect(screen.queryByLabelText('4개')).toBeNull();
+    expect(screen.queryByText('용지 방향')).toBeNull();
+    expect(screen.queryByLabelText('세로')).toBeNull();
+    expect(screen.queryByLabelText('가로')).toBeNull();
   });
 });

@@ -1,15 +1,14 @@
 <script lang="ts">
-  import type { BingoBoardData, BoardsPerPage, PageOrientation } from '$lib/bingo';
+  import type { BingoBoardData, BoardsPerPage } from '$lib/bingo';
   import BingoBoard from './BingoBoard.svelte';
 
   interface Props {
     boards?: BingoBoardData[];
     boardsPerPage?: BoardsPerPage;
-    pageOrientation?: PageOrientation;
     title?: string;
   }
 
-  let { boards = [], boardsPerPage = 2, pageOrientation = 'portrait', title = '' }: Props = $props();
+  let { boards = [], boardsPerPage = 2, title = '' }: Props = $props();
 
   let pages = $derived(
     boards.reduce<BingoBoardData[][]>((groups, board, index) => {
@@ -22,7 +21,7 @@
 </script>
 
 <section
-  class={`print-preview layout-${boardsPerPage} orientation-${pageOrientation}`}
+  class={`print-preview layout-${boardsPerPage}`}
   aria-label="빙고판 미리보기"
 >
   {#if boards.length === 0}

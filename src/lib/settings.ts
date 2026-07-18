@@ -1,4 +1,4 @@
-import type { BoardSize, BoardsPerPage, PageOrientation } from './bingo';
+import type { BoardSize, BoardsPerPage } from './bingo';
 
 export interface SettingsState {
   title: string;
@@ -6,7 +6,6 @@ export interface SettingsState {
   randomizeBoards: boolean;
   copyCount: number;
   boardsPerPage: BoardsPerPage;
-  pageOrientation: PageOrientation;
   itemsText: string;
 }
 
@@ -36,7 +35,6 @@ export const DEFAULT_SETTINGS: SettingsState = {
   randomizeBoards: true,
   copyCount: 30,
   boardsPerPage: 2,
-  pageOrientation: 'portrait',
   itemsText: ''
 };
 
@@ -49,11 +47,7 @@ function isBoardSize(value: unknown): value is BoardSize {
 }
 
 function isBoardsPerPage(value: unknown): value is BoardsPerPage {
-  return value === 1 || value === 2 || value === 4;
-}
-
-function isPageOrientation(value: unknown): value is PageOrientation {
-  return value === 'portrait' || value === 'landscape';
+  return value === 1 || value === 2;
 }
 
 export function normalizeSettings(value: unknown): SettingsState {
@@ -72,9 +66,6 @@ export function normalizeSettings(value: unknown): SettingsState {
   const boardsPerPage = isBoardsPerPage(value.boardsPerPage)
     ? value.boardsPerPage
     : DEFAULT_SETTINGS.boardsPerPage;
-  const pageOrientation = isPageOrientation(value.pageOrientation)
-    ? value.pageOrientation
-    : DEFAULT_SETTINGS.pageOrientation;
   const itemsText = typeof value.itemsText === 'string' ? value.itemsText : DEFAULT_SETTINGS.itemsText;
 
   return {
@@ -83,7 +74,6 @@ export function normalizeSettings(value: unknown): SettingsState {
     randomizeBoards,
     copyCount,
     boardsPerPage,
-    pageOrientation,
     itemsText
   };
 }

@@ -97,7 +97,7 @@
 
   <fieldset class="field-group">
     <legend>페이지당 배치</legend>
-    <div class="segmented three">
+    <div class="segmented">
       <label class:active={settings.boardsPerPage === 1}>
         <input
           checked={settings.boardsPerPage === 1}
@@ -116,40 +116,6 @@
         />
         <span>2개</span>
       </label>
-      <label class:active={settings.boardsPerPage === 4}>
-        <input
-          checked={settings.boardsPerPage === 4}
-          type="radio"
-          name="boards-per-page"
-          onchange={() => updateSetting('boardsPerPage', 4)}
-        />
-        <span>4개</span>
-      </label>
-    </div>
-  </fieldset>
-
-  <fieldset class="field-group">
-    <legend>용지 방향</legend>
-    <div class="segmented">
-      <label class:active={settings.pageOrientation === 'portrait'}>
-        <input
-          checked={settings.pageOrientation === 'portrait'}
-          type="radio"
-          name="page-orientation"
-          onchange={() => updateSetting('pageOrientation', 'portrait')}
-        />
-        <span>세로</span>
-      </label>
-      <label class:active={settings.pageOrientation === 'landscape'}>
-        <input
-          checked={settings.pageOrientation === 'landscape'}
-          type="radio"
-          name="page-orientation"
-          onchange={() => updateSetting('pageOrientation', 'landscape')}
-        />
-        <span>가로</span>
-      </label>
     </div>
   </fieldset>
 </section>
-

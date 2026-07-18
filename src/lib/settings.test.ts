@@ -32,7 +32,6 @@ describe('normalizeSettings', () => {
         randomizeBoards: true,
         copyCount: 30,
         boardsPerPage: 2,
-        pageOrientation: 'landscape',
         itemsText: 'apple\nbanana'
       })
     ).toEqual({
@@ -42,7 +41,6 @@ describe('normalizeSettings', () => {
       randomizeBoards: true,
       copyCount: 30,
       boardsPerPage: 2,
-      pageOrientation: 'landscape',
       itemsText: 'apple\nbanana'
     });
   });
@@ -54,6 +52,19 @@ describe('normalizeSettings', () => {
         copyCount: 500,
         boardsPerPage: 3,
         pageOrientation: 'wide'
+      })
+    ).toEqual(DEFAULT_SETTINGS);
+  });
+
+  it('keeps print settings landscape-only and rejects the removed 4-up layout', () => {
+    expect(DEFAULT_SETTINGS).not.toHaveProperty('pageOrientation');
+    expect(DEFAULT_SETTINGS.boardsPerPage).toBe(2);
+
+    expect(
+      normalizeSettings({
+        ...DEFAULT_SETTINGS,
+        boardsPerPage: 4,
+        pageOrientation: 'portrait'
       })
     ).toEqual(DEFAULT_SETTINGS);
   });

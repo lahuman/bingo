@@ -87,7 +87,7 @@
   />
 </svelte:head>
 
-<main class={`app-shell print-${settings.pageOrientation}`}>
+<main class="app-shell">
   <section class="workspace" aria-label="빙고 설정">
     <div class="workspace-header">
       <h1>수업용 빙고 프린트</h1>
@@ -114,7 +114,6 @@
       {boards}
       title={settings.title}
       boardsPerPage={settings.boardsPerPage}
-      pageOrientation={settings.pageOrientation}
     />
   </section>
 </main>

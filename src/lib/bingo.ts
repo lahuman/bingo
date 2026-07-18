@@ -1,6 +1,5 @@
 export type BoardSize = 4 | 5;
-export type BoardsPerPage = 1 | 2 | 4;
-export type PageOrientation = 'portrait' | 'landscape';
+export type BoardsPerPage = 1 | 2;
 
 export interface BingoBoardData {
   id: string;
